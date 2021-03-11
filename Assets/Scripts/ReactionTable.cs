@@ -23,11 +23,11 @@ namespace Simulation
         {
             if (!container.ContainsKey(caller))
                 container.Add(caller, new Dictionary<string,
-                    Dictionary<string, Reaction>>);
+                    Dictionary<string, Reaction>>());
 
             if (!container[caller].ContainsKey(receiver))
                 container[caller].Add(receiver, 
-                    new Dictionary<string, Reaction>);
+                    new Dictionary<string, Reaction>());
 
             if (!container[caller][receiver].ContainsKey(message))
                 container[caller][receiver].Add(message, react);
@@ -36,7 +36,7 @@ namespace Simulation
         }
 
         private Reaction? FindReaction(string caller, string receiver,
-            string message, Reaction react)
+            string message)
         {
             if (!container.ContainsKey(caller))
                 return null;

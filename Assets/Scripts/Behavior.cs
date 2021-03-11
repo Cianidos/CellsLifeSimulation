@@ -11,10 +11,16 @@ namespace Simulation
     {
         public BehaviorTag Tag;
         public ReactionTable Table;
+        public LifeCycle Cycle;
 
-        public void ReactTo(BehaviorTag otherTag, Message otherMessage, Sim other)
+        public void ReactTo(Sim me, Request request)
         {
-            throw new NotImplementedException();
+            Table.GetReaction(request.Author.Behavior.Tag, me.Behavior.Tag, request.Message);
+        }
+
+        public Action<Sim> NextInstruction()
+        {
+            return Cycle.Next();
         }
     }
 }
