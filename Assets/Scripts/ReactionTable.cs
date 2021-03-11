@@ -15,43 +15,122 @@ namespace Simulation
                 Dictionary<string,
                     Dictionary<string, Reaction>>> container;
 
+        private string @default = "default";
+
         // add specific reaction with full path
-        public void AddReaction(BehaviorTag caller, Message message, BehaviorTag receiver, Reaction react)
+        private void AddReaction(string caller, string receiver, 
+            string message, Reaction react)
         {
-            throw new System.NotImplementedException();
+            if (!container.ContainsKey(caller))
+                container.Add(caller, new Dictionary<string,
+                    Dictionary<string, Reaction>>);
+
+            if (!container[caller].ContainsKey(receiver))
+                container[caller].Add(receiver, 
+                    new Dictionary<string, Reaction>);
+
+            if (!container[caller][receiver].ContainsKey(message))
+                container[caller][receiver].Add(message, react);
+            else
+                container[caller][receiver].Add(message, react);
+        }
+
+        private Reaction? FindReaction(string caller, string receiver,
+            string message, Reaction react)
+        {
+            if (!container.ContainsKey(caller))
+                return null;
+
+            if (!container[caller].ContainsKey(receiver))
+                return null;
+
+            if (!container[caller][receiver].ContainsKey(message))
+                return null;
+            else
+                return container[caller][receiver][message];
+        }
+
+        public void AddReaction(BehaviorTag caller,
+            BehaviorTag receiver, Message message, Reaction react)
+        {
+            AddReaction(caller.Value, receiver.Value, message.Value, react);
         }
 
         // add default reaction on caller message
         // default reactions works if no specific reaction
-        public void AddDefaultReactionOn(BehaviorTag caller, Message message, Reaction react)
+        public void AddDefaultReactionOn(BehaviorTag caller, 
+            Message message, Reaction react)
         {
-            throw new System.NotImplementedException();
+            AddReaction(caller.Value, @default, message.Value, react);
         }
 
         // add default reaction on all caller messages
         // default reactions works if no specific reaction
         public void AddDefaultReactionOn(BehaviorTag caller, Reaction react)
         {
-            throw new System.NotImplementedException();
+            AddReaction(caller.Value, @default, @default, react);
         }
 
         // add default reaction of receiver for all messages
         // default reactions works if no specific reaction
-        public void AddDefaultReactionOf(Message message, BehaviorTag receiver, Reaction react)
+        public void AddDefaultReactionFrom(BehaviorTag receiver, 
+            Message message, Reaction react)
         {
-            throw new System.NotImplementedException();
+            AddReaction(@default, receiver.Value, message.Value, react);
         }
         
         // add default reaction of receiver on all messages
         // default reactions works if no specific reaction
-        public void AddDefaultReactionOf(BehaviorTag receiver, Reaction react)
+        public void AddDefaultReactionFrom
+            (BehaviorTag receiver, Reaction react)
         {
-            throw new System.NotImplementedException();
+            AddReaction(@default, receiver.Value, @default, react);
         }
 
-        public Reaction GetReaction(BehaviorTag caller, Message message, BehaviorTag receiver)
+        public Reaction? GetReaction(BehaviorTag caller, 
+            BehaviorTag receiver, Message message)
         {
-            throw new System.NotImplementedException();
+            Reaction? res = FindReaction(caller.Value, 
+                receiver.Value, message.Value);
+            if (res != null)
+                return res;
+
+            res = FindReaction(caller.Value, 
+                receiver.Value, @default);
+            if (res != null)
+                return res;
+            
+            res = FindReaction(caller.Value,
+                @default, message.Value);
+            if (res != null)
+                return res;
+            
+            res = FindReaction(caller.Value,
+                @default, @default);
+            if (res != null)
+                return res;
+
+            res = FindReaction(@default,
+                receiver.Value, message.Value);
+            if (res != null)
+                return res;
+
+            res = FindReaction(@default,
+                receiver.Value, @default);
+            if (res != null)
+                return res;
+
+            res = FindReaction(@default,
+                @default, message.Value);
+            if (res != null)
+                return res;
+
+            res = FindReaction(@default,
+                @default, @default);
+            if (res != null)
+                return res;
+
+            return null;
         }
     }
 }
