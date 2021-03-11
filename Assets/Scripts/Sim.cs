@@ -7,10 +7,15 @@ using UnityEngine;
 
 public class Sim : MonoBehaviour
 {
-    public Behavior Behavior;
+    public Simulation.Behavior Behavior;
 
-    public void CalledBy(Sim other, string message)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         throw new NotImplementedException();
+    }
+
+    private void ReciveMessage(Sim other)
+    {
+
     }
 }

@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Behavior
+
+namespace Simulation
 {
-    public string Tag;
-
-    private Dictionary<string, Dictionary<string, Action>> reactionTable;
-
-    public void ReactTo(string otherTag, string otherMessage, Sim other)
+    public class Behavior
     {
-        throw new NotImplementedException();
+        public BehaviorTag Tag;
+        public ReactionTable Table;
+
+        public void ReactTo(BehaviorTag otherTag, Message otherMessage, Sim other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
