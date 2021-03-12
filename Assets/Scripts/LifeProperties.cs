@@ -10,25 +10,32 @@ namespace Simulation
     using Property = System.String;
     public class LifeProperties
     {
-        public Dictionary<Property, int> Props;
+        private Dictionary<Property, int> Props;
         public void AddProperty(Property name, int value_by_default)
         {
-            throw new NotImplementedException();
+            if (!Props.ContainsKey(name))
+                Props.Add(name, value_by_default);
         }
 
-        public void ChangeValue(PropertyAttribute name, int value)
+        public void ChangeValue(Property name, int value)
         {
-            throw new NotImplementedException();
+            if (!Props.ContainsKey(name))
+                throw new KeyNotFoundException();
+            else
+                Props[name] = value;
         }
 
         public int GetPropertyValue(Property name)
         {
-            throw new NotImplementedException();
+            if (!Props.ContainsKey(name))
+                throw new KeyNotFoundException();
+            else
+                return Props[name];
         }
 
         public bool IsPropertyIn(Property name)
         {
-            throw new NotImplementedException();
+            return Props.ContainsKey(name);
         }
     }
 }
