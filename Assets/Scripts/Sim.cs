@@ -1,4 +1,6 @@
-﻿using System;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,9 +15,7 @@ public class Sim : MonoBehaviour
     }
     private void ReceiveMessage(Message other)
     {
-        Simulation.Request request = 
-            new Simulation.Request(other.CallerSim, other.ValueMessage);
-        Behavior.ReactTo(this, request);
+        Behavior.ReactTo(this, other.request);
     }
 
     IEnumerator LifeCycleCoroutine()

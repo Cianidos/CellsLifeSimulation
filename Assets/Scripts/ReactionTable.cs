@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+using System.Collections.Generic;
 
 namespace Simulation
 {
@@ -11,8 +13,21 @@ namespace Simulation
     {
         public ReactionTable()
         {
-            container = new Dictionary<string, Dictionary<string, Dictionary<string, Reaction>>>();
+            container =
+                new Dictionary<string,
+                    Dictionary<string, Dictionary<string, Reaction>>>
+                {
+                    {
+                        @default,
+                        new Dictionary<string, Dictionary<string, Reaction>>()
+                    }
+                };
+
+            container[@default] .Add(@default, new Dictionary<string, Reaction>());
+            container[@default][@default].Add(@default, ((sim, sim1) => { }));
         }
+
+
         // caller receiver message -> reaction
         private
             Dictionary<string,
@@ -35,7 +50,7 @@ namespace Simulation
             if (!container[caller][receiver].ContainsKey(message))
                 container[caller][receiver].Add(message, react);
             else
-                container[caller][receiver].Add(message, react);
+                container[caller][receiver][message] = react;
         }
 
         private Reaction? FindReaction(string caller, string receiver,
@@ -131,10 +146,7 @@ namespace Simulation
 
             res = FindReaction(@default,
                 @default, @default);
-            if (res != null)
-                return res;
-
-            return null;
+            return res;
         }
     }
 }
