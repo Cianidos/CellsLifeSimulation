@@ -11,6 +11,12 @@ namespace Simulation
 using Instruction = Action<Sim, LifeCycle>;
     public class LifeCycle
     {
+        public LifeCycle(LinkedList<Instruction> list)
+        {
+            InsructionList = list;
+            CurrentNode = InsructionList.First;
+        }
+
         public LinkedList<Instruction> InsructionList;
         public LinkedListNode<Instruction> CurrentNode;
         public void Next(Sim me)

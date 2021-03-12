@@ -8,11 +8,19 @@ namespace Simulation
 {
     public class BehaviorTag
     {
-        public string Value;
+        public BehaviorTag(string value)
+        {
+            Value = value;
+        }
+        public string Value { get; set; }
     }
 
     public class Message
     {
-        public string Value;
+        public Message(string value)
+        {
+            Value = value;
+        }
+        public string Value { get; set; }
     }
 }

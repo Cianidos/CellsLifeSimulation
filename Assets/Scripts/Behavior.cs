@@ -9,6 +9,14 @@ namespace Simulation
 {
     public class Behavior
     {
+        public Behavior(BehaviorTag tag)
+        {
+            Tag = tag;
+            Table = new ReactionTable();
+            Cycle = new LifeCycle();
+            Properties = new LifeProperties();
+        }
+    
         public BehaviorTag Tag;
         public ReactionTable Table;
         public LifeCycle Cycle;

@@ -9,6 +9,10 @@ namespace Simulation
 // determine Sims reactions on other Sim's requests
     public class ReactionTable
     {
+        public ReactionTable()
+        {
+            container = new Dictionary<string, Dictionary<string, Dictionary<string, Reaction>>>();
+        }
         // caller receiver message -> reaction
         private
             Dictionary<string,
