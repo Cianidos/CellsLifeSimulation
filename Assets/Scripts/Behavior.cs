@@ -12,15 +12,16 @@ namespace Simulation
         public BehaviorTag Tag;
         public ReactionTable Table;
         public LifeCycle Cycle;
+        public LifeProperties Propertys;
 
         public void ReactTo(Sim me, Request request)
         {
             Table.GetReaction(request.Author.Behavior.Tag, me.Behavior.Tag, request.Message);
         }
 
-        public Action<Sim> NextInstruction()
+        public void NextInstruction(Sim me)
         {
-            return Cycle.Next();
+            Cycle.Next(me);
         }
     }
 }

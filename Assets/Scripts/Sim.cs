@@ -5,10 +5,9 @@ public class Sim : MonoBehaviour
 {
     public Simulation.Behavior Behavior;
 
-
     private void LifeCycle()
     {
-        Behavior.NextInstruction()(this);
+        Behavior.NextInstruction(this);
     }
     private void ReceiveMessage(Message other)
     {
