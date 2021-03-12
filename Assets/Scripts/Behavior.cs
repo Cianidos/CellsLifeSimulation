@@ -12,7 +12,7 @@ namespace Simulation
         public BehaviorTag Tag;
         public ReactionTable Table;
         public LifeCycle Cycle;
-        public LifeProperties Propertys;
+        public LifeProperties Properties;
 
         public void ReactTo(Sim me, Request request)
         {
