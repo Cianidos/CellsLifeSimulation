@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Sim : MonoBehaviour
 {
     public Simulation.Behavior Behavior;
+    public Coroutine LifeCycleContainer;
 
     private void LifeCycle()
     {
@@ -16,9 +18,19 @@ public class Sim : MonoBehaviour
         Behavior.ReactTo(this, request);
     }
 
-    private void Update()
+    IEnumerator LifeCycleCoroutine()
     {
         LifeCycle();
+        yield return new WaitForSeconds(1);
+    }
+
+    private void Awake()
+    {
+        LifeCycleContainer = StartCoroutine(nameof(LifeCycleCoroutine));
+    }
+
+    private void Update()
+    {
     }
 
     private void OnCollisionEnter2D(Collision2D other)
