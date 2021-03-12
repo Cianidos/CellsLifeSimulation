@@ -11,7 +11,8 @@ public class Sim : MonoBehaviour
     }
     private void ReceiveMessage(Message other)
     {
-        Simulation.Request request = new Simulation.Request(other.CallerSim, other.ValueMessage);
+        Simulation.Request request = 
+            new Simulation.Request(other.CallerSim, other.ValueMessage);
         Behavior.ReactTo(this, request);
     }
 
