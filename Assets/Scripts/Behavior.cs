@@ -16,7 +16,8 @@ namespace Simulation
 
         public void ReactTo(Sim me, Request request)
         {
-            Table.GetReaction(request.Author.Behavior.Tag, me.Behavior.Tag, request.Message);
+            Table.GetReaction(request.Author.Behavior.Tag,
+                me.Behavior.Tag, request.Message);
         }
 
         public void NextInstruction(Sim me)

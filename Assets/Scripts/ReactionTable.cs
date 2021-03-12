@@ -17,7 +17,6 @@ namespace Simulation
 
         private string @default = "default";
 
-        // add specific reaction with full path
         private void AddReaction(string caller, string receiver, 
             string message, Reaction react)
         {
@@ -50,6 +49,7 @@ namespace Simulation
                 return container[caller][receiver][message];
         }
 
+        // add specific reaction with full path
         public void AddReaction(BehaviorTag caller,
             BehaviorTag receiver, Message message, Reaction react)
         {
