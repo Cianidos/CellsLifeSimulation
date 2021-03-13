@@ -14,6 +14,14 @@ namespace Simulation
             Cycle = new LifeCycle();
             Properties = new LifeProperties();
         }
+
+        public Behavior(Behavior otherBehavior)
+        {
+            Tag = otherBehavior.Tag;
+            Table = otherBehavior.Table;
+            Cycle = new LifeCycle(otherBehavior.Cycle);
+            Properties = new LifeProperties(otherBehavior.Properties);
+        }
     
         public BehaviorTag Tag;
         public ReactionTable Table;

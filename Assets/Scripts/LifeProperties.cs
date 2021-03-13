@@ -7,6 +7,10 @@ namespace Simulation
     using Property = System.String;
     public class LifeProperties
     {
+        public LifeProperties(LifeProperties otheProperties)
+        {
+            Props = new Dictionary<string, int>(otheProperties.Props);
+        }
         public LifeProperties()
         {
             Props = new Dictionary<string, int>();

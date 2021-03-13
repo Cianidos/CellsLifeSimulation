@@ -2,12 +2,24 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 using System;
 using System.Collections;
+using Simulation;
 using UnityEngine;
 
 public class Sim : MonoBehaviour
 {
-    public Simulation.Behavior Behavior;
+    public Simulation.Behavior _behavior;
     public Coroutine LifeCycleContainer;
+
+    public Behavior Behavior
+    {
+        get => _behavior;
+        set => _behavior = new Simulation.Behavior(value);
+    }
+
+    public void OnInstatiatorDone()
+    {
+        LifeCycleContainer = StartCoroutine(nameof(LifeCycleCoroutine));
+    }
 
     private void LifeCycle()
     {
@@ -20,13 +32,8 @@ public class Sim : MonoBehaviour
 
     IEnumerator LifeCycleCoroutine()
     {
+        yield return new WaitForSeconds(2);
         LifeCycle();
-        yield return new WaitForSeconds(1);
-    }
-
-    private void Awake()
-    {
-        LifeCycleContainer = StartCoroutine(nameof(LifeCycleCoroutine));
     }
 
     private void Update()

@@ -16,14 +16,26 @@ using Instruction = Action<Sim, LifeCycle>;
             CurrentNode = InsructionList.First;
         }
 
+        public LifeCycle(LifeCycle otherCycle)
+        {
+            InsructionList =
+                new LinkedList<Instruction>(otherCycle.InsructionList);
+            CurrentNode = InsructionList.First;
+        }
+
+        public void EndCycle()
+        {
+            InsructionList.AddLast(((sim, cycle) => { }));
+        }
+
         public LinkedList<Instruction> InsructionList;
         public LinkedListNode<Instruction> CurrentNode;
         public void Next(Sim me)
         {
             if (CurrentNode.Next != null)
             {
-                CurrentNode = CurrentNode.Next;
                 CurrentNode.Value(me, this);
+                CurrentNode = CurrentNode.Next;
             }
         }
     }

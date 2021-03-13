@@ -9,14 +9,23 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var table = new ReactionTable();
         var cellBehaviorFirst = new Behavior("first");
+        cellBehaviorFirst.Table = table;
 
         var firCycle = new LifeCycle();
         firCycle.InsructionList.AddLast(((sim, cycle) =>
         {
+            Instantiator.InstantiateSim(cellBehaviorFirst,
+                sim.transform.position + new Vector3(Random.Range(-1.0f, 1.0f),
+                    Random.Range(-1.0f, 1.0f), 0) * 2);
         }));
-        
-        var table = new ReactionTable();
+        firCycle.EndCycle();
+
+        cellBehaviorFirst.Cycle = firCycle;
+        cellBehaviorFirst.Properties = new LifeProperties();
+
+        Instantiator.InstantiateSim(cellBehaviorFirst, Vector3.zero);
     }
 
     // Update is called once per frame
