@@ -1,5 +1,6 @@
 ﻿// This is a personal academic project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
 using UnityEngine;
 
 namespace Simulation
@@ -15,6 +16,7 @@ namespace Simulation
             obj.AddComponent<Sim>();
             var sim = obj.GetComponent<Sim>();
             sim.Behavior = behavior;
+            obj.layer = LayerMask.NameToLayer("Objects");
         }
 
         public static void InstantiateMessage(Request request, float lifeTimeInSeconds, float radius)
@@ -26,6 +28,7 @@ namespace Simulation
             mesComponent.lifeTime = lifeTimeInSeconds;
             mesComponent.request = request;
             obj.transform.localScale = Vector3.one * radius;
+            obj.layer = LayerMask.NameToLayer("Messages");
         }
     }
 }
