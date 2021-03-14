@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Simulation
 {
@@ -33,6 +34,14 @@ namespace Simulation
         /// <returns>Instruction that instantiate new object</returns>
         public static Instruction InstanceRandomNear(Behavior behavior)
         {
+            // example, remake this
+            return (sim, cycle) =>
+            {
+                Instantiator.InstantiateSim(behavior,
+                    sim.transform.position + new Vector3(
+                        Random.Range(-1.0f, 1.0f),
+                        Random.Range(-1.0f, 1.0f), 0) * 2);
+            };
             throw new NotImplementedException();
         }
 
