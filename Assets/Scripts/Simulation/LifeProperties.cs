@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace Simulation
 {
-    using Property = System.String;
+    //using Property = System.String;
     public class LifeProperties
     {
         public LifeProperties(LifeProperties otheProperties)
         {
-            Props = new Dictionary<string, int>(otheProperties.Props);
+            Props = new Dictionary<Property, int>(otheProperties.Props);
         }
         public LifeProperties()
         {
-            Props = new Dictionary<string, int>();
+            Props = new Dictionary<Property, int>();
         }
 
         private Dictionary<Property, int> Props;

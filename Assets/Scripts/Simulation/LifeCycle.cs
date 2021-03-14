@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Simulation
 {
-using Instruction = Action<Sim, LifeCycle>;
+    using Instruction = Action<Sim, LifeCycle>;
     public class LifeCycle
     {
         public LifeCycle()
