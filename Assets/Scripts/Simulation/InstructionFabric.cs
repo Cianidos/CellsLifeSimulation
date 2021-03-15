@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -49,7 +48,20 @@ namespace Simulation
         /// </summary>
         /// <param name="index">position of other instruction in lifecycle</param>
         /// <returns>Instruction</returns>
-        public static Instruction CtrlCurrentToIndex(int index)
+        public static Instruction CtrlCurrentToIndex(uint index)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Control instruction, determine order of instruction execution
+        /// Set lifecycle current instruction into index relative this index
+        /// (may be less then 0)
+        /// when 0 do nothing
+        /// </summary>
+        /// <param name="index">position of other instruction in lifecycle relative this</param>
+        /// <returns>Instruction</returns>
+        public static Instruction CtrlCurrentToIndexRelative(int index)
         {
             throw new NotImplementedException();
         }
@@ -71,7 +83,7 @@ namespace Simulation
         /// </summary>
         /// <param name="conditionFunc">condition of execution of next instruction</param>
         /// <returns>Instruction</returns>
-        public static Instruction CtrlNextIf(Func<bool> conditionFunc)
+        public static Instruction CtrlNextIf(Func<Sim, bool> conditionFunc)
         {
             throw new NotImplementedException();
         }
@@ -109,6 +121,15 @@ namespace Simulation
         /// <returns></returns>
         public static Instruction MsgPost(Message message, float lifeTime,
             float radius)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Sim will destroyed when cycle riches this instruction
+        /// </summary>
+        /// <returns></returns>
+        public static Instruction SelfDestruction()
         {
             throw new NotImplementedException();
         }

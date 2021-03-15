@@ -34,6 +34,13 @@ namespace Simulation
 
         private string @default = "default";
 
+        /// <summary>
+        /// Absolute specific reaction adding
+        /// </summary>
+        /// <param name="caller"></param>
+        /// <param name="receiver"></param>
+        /// <param name="message"></param>
+        /// <param name="react"></param>
         private void AddReaction(string caller, string receiver, 
             string message, Reaction react)
         {
@@ -66,45 +73,84 @@ namespace Simulation
                 return container[caller][receiver][message];
         }
 
-        // add specific reaction with full path
-        public void AddReaction(BehaviorTag caller,
+        /// <summary>
+        /// add specific reaction with full path
+        /// </summary>
+        /// <param name="caller"></param>
+        /// <param name="receiver"></param>
+        /// <param name="message"></param>
+        /// <param name="react"></param>
+        public ReactionTable AddReaction(BehaviorTag caller,
             BehaviorTag receiver, Message message, Reaction react)
         {
             AddReaction(caller.Value, receiver.Value, message.Value, react);
+            return this;
         }
 
-        // add default reaction on caller message
-        // default reactions works if no specific reaction
-        public void AddDefaultReactionOn(BehaviorTag caller, 
+        
+        /// <summary>
+        /// add default reaction on caller message
+        /// default reactions works if no specific reaction
+        /// </summary>
+        /// <param name="caller"></param>
+        /// <param name="message"></param>
+        /// <param name="react"></param>
+        public ReactionTable AddDefaultReactionOn(BehaviorTag caller, 
             Message message, Reaction react)
         {
             AddReaction(caller.Value, @default, message.Value, react);
+            return this;
         }
 
-        // add default reaction on all caller messages
-        // default reactions works if no specific reaction
-        public void AddDefaultReactionOn(BehaviorTag caller, Reaction react)
+        /// <summary>
+        /// add default reaction on all caller messages
+        /// default reactions works if no specific reaction
+        /// </summary>
+        /// <param name="caller"></param>
+        /// <param name="react"></param>
+        public ReactionTable AddDefaultReactionOn(BehaviorTag caller, Reaction react)
         {
             AddReaction(caller.Value, @default, @default, react);
+            return this;
         }
 
-        // add default reaction of receiver for all messages
-        // default reactions works if no specific reaction
-        public void AddDefaultReactionFrom(BehaviorTag receiver, 
+        /// <summary>
+        /// add default reaction of receiver for all messages
+        /// default reactions works if no specific reaction
+        /// </summary>
+        /// <param name="receiver"></param>
+        /// <param name="message"></param>
+        /// <param name="react"></param>
+        public ReactionTable AddDefaultReactionFrom(BehaviorTag receiver, 
             Message message, Reaction react)
         {
             AddReaction(@default, receiver.Value, message.Value, react);
+            return this;
         }
         
-        // add default reaction of receiver on all messages
-        // default reactions works if no specific reaction
-        public void AddDefaultReactionFrom
+        /// <summary>
+        /// add default reaction of receiver on all messages
+        /// default reactions works if no specific reaction
+        /// </summary>
+        /// <param name="receiver"></param>
+        /// <param name="react"></param>
+        public ReactionTable AddDefaultReactionFrom
             (BehaviorTag receiver, Reaction react)
         {
             AddReaction(@default, receiver.Value, @default, react);
+            return this;
         }
 
-        public Reaction? GetReaction(BehaviorTag caller, 
+        /// <summary>
+        /// return reaction specified for caller receiver and message
+        /// if reaction not specified for some of those
+        /// default with maximum specific version are used
+        /// </summary>
+        /// <param name="caller"></param>
+        /// <param name="receiver"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public Reaction GetReaction(BehaviorTag caller, 
             BehaviorTag receiver, Message message)
         {
             Reaction? res = FindReaction(caller.Value, 

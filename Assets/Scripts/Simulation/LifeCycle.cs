@@ -9,6 +9,10 @@ namespace Simulation
 {
     public class LifeCycle
     {
+        public LinkedList<Instruction> InsructionList;
+        public LinkedListNode<Instruction> CurrentNode;
+
+        
         public LifeCycle()
         {
             InsructionList = new LinkedList<Instruction>();
@@ -22,13 +26,20 @@ namespace Simulation
             CurrentNode = InsructionList.First;
         }
 
-        public void EndCycle()
+        public LifeCycle AddInstruction(Instruction instruction)
         {
-            InsructionList.AddLast(((sim, cycle) => { }));
+            InsructionList.AddLast(instruction);
+            return this;
         }
 
-        public LinkedList<Instruction> InsructionList;
-        public LinkedListNode<Instruction> CurrentNode;
+        public void EndCycle(bool loop)
+        {
+            InsructionList.AddLast(!loop
+                ? (sim, cycle) => { }
+                : InstructionFabric.CtrlCurrentToBegin());
+            CurrentNode = InsructionList.First;
+        }
+
         public void Next(Sim me)
         {
             if (CurrentNode.Next != null)
