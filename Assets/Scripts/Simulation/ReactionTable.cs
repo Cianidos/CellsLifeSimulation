@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 namespace Simulation
 {
-
-// takes Sim who call and Sim who are called
-    using Reaction = System.Action<Sim, Sim>;
-
-// determine Sims reactions on other Sim's requests
+    /// <summary>
+    /// Determine Sims reactions on other Sim's requests
+    /// </summary>
     public class ReactionTable
     {
         public ReactionTable()

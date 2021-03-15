@@ -20,6 +20,7 @@ public class Main : MonoBehaviour
                 sim.transform.position + new Vector3(Random.Range(-1.0f, 1.0f),
                     Random.Range(-1.0f, 1.0f), 0) * 2);
         }));
+        
         firCycle.EndCycle();
 
         cellBehaviorFirst.Cycle = firCycle;

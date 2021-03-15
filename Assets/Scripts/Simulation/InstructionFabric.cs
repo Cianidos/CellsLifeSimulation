@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 
 namespace Simulation
 {
-    using Instruction = Action<Sim, LifeCycle>;
-    
     
     /// <summary>
     /// Class that makes completed and ready to use Instructions for LifeCycle

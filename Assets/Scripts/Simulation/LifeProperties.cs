@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace Simulation
 {
-    //using Property = System.String;
     public class LifeProperties
     {
         public LifeProperties(LifeProperties otheProperties)
