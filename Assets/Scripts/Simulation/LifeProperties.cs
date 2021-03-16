@@ -30,10 +30,9 @@ namespace Simulation
                 Props[name] = value;
         }
 
-        //TODO
         public void IncrementValue(Property name, int increment)
         {
-            throw new System.NotImplementedException();
+            ChangeValue(name, GetPropertyValue(name) + increment);
         }
 
         public int GetPropertyValue(Property name)

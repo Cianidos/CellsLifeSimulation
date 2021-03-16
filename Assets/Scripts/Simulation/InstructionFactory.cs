@@ -41,14 +41,10 @@ namespace Simulation
         /// <returns>Instruction that instantiate new object</returns>
         public static Instruction InstanceRandomNear(Behavior behavior)
         {
-            // example, remake this
-            throw new NotImplementedException();
             return (sim, cycle) =>
             {
                 Instantiator.InstantiateSim(behavior,
-                    sim.transform.position + new Vector3(
-                        Random.Range(-1.0f, 1.0f),
-                        Random.Range(-1.0f, 1.0f), 0) * 2);
+                    sim.transform.position + RandomNearVector3(2.0F));
             };
         }
 
@@ -175,9 +171,7 @@ namespace Simulation
         {
             return (sim, cycle) =>
             {
-                sim.Behavior.Properties.ChangeValue(property, 
-                    sim.Behavior.Properties.GetPropertyValue(property)
-                    + increment);
+                sim.Behavior.Properties.IncrementValue(property, increment);
             };
         }
 
@@ -208,6 +202,12 @@ namespace Simulation
             {
                 Object.Destroy(sim);
             };
+        }
+
+        private static Vector3 RandomNearVector3(float dist = 1)
+        {
+            return new Vector3(Random.Range(-1.0f, 1.0f),
+                Random.Range(-1.0f, 1.0f), 0) * dist;
         }
     }
 }
