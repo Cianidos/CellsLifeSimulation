@@ -8,17 +8,17 @@ namespace Simulation
 {
     public class Instantiator : MonoBehaviour
     {
-        private void Awake()
-        {
-            _SimPrefab = SimPrefab;
-            _MessagePrefab = MessagePrefab;
-        }
-
         private static GameObject _SimPrefab;
         private static GameObject _MessagePrefab;
 
         public GameObject SimPrefab;
         public GameObject MessagePrefab;
+
+        private void Awake()
+        {
+            _SimPrefab = SimPrefab;
+            _MessagePrefab = MessagePrefab;
+        }
 
         public static void InstantiateSim(Behavior behavior, Vector3 position)
         {

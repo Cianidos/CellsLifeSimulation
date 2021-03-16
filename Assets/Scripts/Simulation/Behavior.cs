@@ -4,6 +4,11 @@ namespace Simulation
 {
     public class Behavior
     {
+        public readonly BehaviorTag Tag;
+        public ReactionTable Table;
+        public LifeCycle Cycle;
+        public LifeProperties Properties;
+
         public Behavior(string tag) : this(new BehaviorTag(tag))
         { }
 
@@ -22,11 +27,6 @@ namespace Simulation
             Cycle = new LifeCycle(otherBehavior.Cycle);
             Properties = new LifeProperties(otherBehavior.Properties);
         }
-
-        public readonly BehaviorTag Tag;
-        public ReactionTable Table;
-        public LifeCycle Cycle;
-        public LifeProperties Properties;
 
         public void ReactTo(Sim me, Request request)
         {
