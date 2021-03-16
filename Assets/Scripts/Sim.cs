@@ -29,6 +29,10 @@ public class Sim : MonoBehaviour
     {
         Behavior.ReactTo(this, other.request);
     }
+    private void ReceiveMessageCollide(Sim other)
+    {
+        Behavior.ReactTo(this, new Request(other, new Simulation.Message("collide")));
+    }
 
     IEnumerator LifeCycleCoroutine()
     {
@@ -46,6 +50,12 @@ public class Sim : MonoBehaviour
         if (message != null)
         {
             ReceiveMessage(message);
+        }
+
+        var sim = other.gameObject.GetComponent<Sim>();
+        if (message != null)
+        {
+            ReceiveMessageCollide(sim);
         }
         throw new NotImplementedException();
     }

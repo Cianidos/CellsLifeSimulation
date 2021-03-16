@@ -30,6 +30,12 @@ namespace Simulation
                 Props[name] = value;
         }
 
+        //TODO
+        public void IncrementValue(Property name, int increment)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public int GetPropertyValue(Property name)
         {
             if (!Props.ContainsKey(name))
