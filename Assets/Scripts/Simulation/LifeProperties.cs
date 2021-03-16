@@ -6,16 +6,16 @@ namespace Simulation
 {
     public class LifeProperties
     {
-        public LifeProperties(LifeProperties otheProperties)
+        public LifeProperties(LifeProperties otherProperties)
         {
-            Props = new Dictionary<Property, int>(otheProperties.Props);
+            Props = new Dictionary<Property, int>(otherProperties.Props);
         }
         public LifeProperties()
         {
             Props = new Dictionary<Property, int>();
         }
 
-        private Dictionary<Property, int> Props;
+        private readonly Dictionary<Property, int> Props;
         public void AddProperty(Property name, int value_by_default)
         {
             if (!Props.ContainsKey(name))

@@ -1,14 +1,14 @@
 ﻿// This is a personal academic project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+using Simulation;
 using System;
 using System.Collections;
-using Simulation;
 using UnityEngine;
 
 public class Sim : MonoBehaviour
 {
-    public Simulation.Behavior _behavior;
-    public Coroutine LifeCycleContainer;
+    private Simulation.Behavior _behavior;
+    private Coroutine LifeCycleContainer;
 
     public Behavior Behavior
     {
@@ -16,7 +16,7 @@ public class Sim : MonoBehaviour
         set => _behavior = new Simulation.Behavior(value);
     }
 
-    public void OnInstatiatorDone()
+    public void OnInstantiationDone()
     {
         LifeCycleContainer = StartCoroutine(nameof(LifeCycleCoroutine));
     }

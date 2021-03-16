@@ -7,11 +7,11 @@ using Random = UnityEngine.Random;
 
 namespace Simulation
 {
-    
+
     /// <summary>
     /// Class that makes completed and ready to use Instructions for LifeCycle
     /// </summary>
-    public static class InstructionFabric
+    public static class InstructionFactory
     {
         /// <summary>
         /// Make instantiation instruction
@@ -99,7 +99,7 @@ namespace Simulation
         {
             throw new NotImplementedException();
         }
-        
+
         /// <summary>
         /// Property oriented instruction
         /// Increment property value 

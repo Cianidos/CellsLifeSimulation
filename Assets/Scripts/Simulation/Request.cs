@@ -12,8 +12,8 @@ namespace Simulation
             Author = author;
         }
 
-        public BehaviorTag Tag { get; set; }
-        public Message Message { get; set; }
-        public Sim Author { get; set; }
+        public BehaviorTag Tag { get; }
+        public Message Message { get; }
+        public Sim Author { get; }
     }
 }

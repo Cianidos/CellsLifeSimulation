@@ -10,11 +10,10 @@ public class Main : MonoBehaviour
     void Start()
     {
         var table = new ReactionTable();
-        var cellBehaviorFirst = new Behavior("first");
-        cellBehaviorFirst.Table = table;
+        var cellBehaviorFirst = new Behavior("first") {Table = table};
 
         var firCycle = new LifeCycle();
-        firCycle.InsructionList.AddLast(((sim, cycle) =>
+        firCycle.InstructionList.AddLast(((sim, cycle) =>
         {
             Instantiator.InstantiateSim(cellBehaviorFirst,
                 sim.transform.position + new Vector3(Random.Range(-1.0f, 1.0f),
@@ -32,6 +31,6 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

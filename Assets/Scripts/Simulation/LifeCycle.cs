@@ -1,6 +1,5 @@
 ﻿// This is a personal academic project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-using System;
 using System.Collections.Generic;
 
 
@@ -9,35 +8,35 @@ namespace Simulation
 {
     public class LifeCycle
     {
-        public LinkedList<Instruction> InsructionList;
+        public readonly LinkedList<Instruction> InstructionList;
         public LinkedListNode<Instruction> CurrentNode;
 
-        
+
         public LifeCycle()
         {
-            InsructionList = new LinkedList<Instruction>();
-            CurrentNode = InsructionList.First;
+            InstructionList = new LinkedList<Instruction>();
+            CurrentNode = InstructionList.First;
         }
 
         public LifeCycle(LifeCycle otherCycle)
         {
-            InsructionList =
-                new LinkedList<Instruction>(otherCycle.InsructionList);
-            CurrentNode = InsructionList.First;
+            InstructionList =
+                new LinkedList<Instruction>(otherCycle.InstructionList);
+            CurrentNode = InstructionList.First;
         }
 
         public LifeCycle AddInstruction(Instruction instruction)
         {
-            InsructionList.AddLast(instruction);
+            InstructionList.AddLast(instruction);
             return this;
         }
 
         public void EndCycle(bool loop)
         {
-            InsructionList.AddLast(!loop
+            InstructionList.AddLast(!loop
                 ? (sim, cycle) => { }
-                : InstructionFabric.CtrlCurrentToBegin());
-            CurrentNode = InsructionList.First;
+            : InstructionFactory.CtrlCurrentToBegin());
+            CurrentNode = InstructionList.First;
         }
 
         public void Next(Sim me)

@@ -1,8 +1,6 @@
 ﻿// This is a personal academic project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,7 +14,7 @@ namespace Simulation
             _MessagePrefab = MessagePrefab;
         }
 
-        private static GameObject _SimPrefab; 
+        private static GameObject _SimPrefab;
         private static GameObject _MessagePrefab;
 
         public GameObject SimPrefab;
@@ -32,7 +30,7 @@ namespace Simulation
                 new Vector2(Random.Range(-1.0f, 1.0f),
                     Random.Range(-1.0f, 1.0f) * 50));
             obj.layer = LayerMask.NameToLayer("Objects");
-            sim.OnInstatiatorDone();
+            sim.OnInstantiationDone();
         }
 
         public static void InstantiateMessage(Request request,

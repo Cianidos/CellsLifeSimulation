@@ -21,18 +21,18 @@ namespace Simulation
                     }
                 };
 
-            container[@default] .Add(@default, new Dictionary<string, Reaction>());
+            container[@default].Add(@default, new Dictionary<string, Reaction>());
             container[@default][@default].Add(@default, ((sim, sim1) => { }));
         }
 
 
         // caller receiver message -> reaction
-        private
+        private readonly
             Dictionary<string,
                 Dictionary<string,
                     Dictionary<string, Reaction>>> container;
 
-        private string @default = "default";
+        private const string @default = "default";
 
         /// <summary>
         /// Absolute specific reaction adding
@@ -41,7 +41,7 @@ namespace Simulation
         /// <param name="receiver"></param>
         /// <param name="message"></param>
         /// <param name="react"></param>
-        private void AddReaction(string caller, string receiver, 
+        private void AddReaction(string caller, string receiver,
             string message, Reaction react)
         {
             if (!container.ContainsKey(caller))
@@ -49,7 +49,7 @@ namespace Simulation
                     Dictionary<string, Reaction>>());
 
             if (!container[caller].ContainsKey(receiver))
-                container[caller].Add(receiver, 
+                container[caller].Add(receiver,
                     new Dictionary<string, Reaction>());
 
             if (!container[caller][receiver].ContainsKey(message))
@@ -58,6 +58,7 @@ namespace Simulation
                 container[caller][receiver][message] = react;
         }
 
+#nullable enable
         private Reaction? FindReaction(string caller, string receiver,
             string message)
         {
@@ -72,6 +73,7 @@ namespace Simulation
             else
                 return container[caller][receiver][message];
         }
+#nullable disable
 
         /// <summary>
         /// add specific reaction with full path
@@ -87,7 +89,7 @@ namespace Simulation
             return this;
         }
 
-        
+
         /// <summary>
         /// add default reaction on caller message
         /// default reactions works if no specific reaction
@@ -95,7 +97,7 @@ namespace Simulation
         /// <param name="caller"></param>
         /// <param name="message"></param>
         /// <param name="react"></param>
-        public ReactionTable AddDefaultReactionOn(BehaviorTag caller, 
+        public ReactionTable AddDefaultReactionOn(BehaviorTag caller,
             Message message, Reaction react)
         {
             AddReaction(caller.Value, @default, message.Value, react);
@@ -121,13 +123,13 @@ namespace Simulation
         /// <param name="receiver"></param>
         /// <param name="message"></param>
         /// <param name="react"></param>
-        public ReactionTable AddDefaultReactionFrom(BehaviorTag receiver, 
+        public ReactionTable AddDefaultReactionFrom(BehaviorTag receiver,
             Message message, Reaction react)
         {
             AddReaction(@default, receiver.Value, message.Value, react);
             return this;
         }
-        
+
         /// <summary>
         /// add default reaction of receiver on all messages
         /// default reactions works if no specific reaction
@@ -150,24 +152,25 @@ namespace Simulation
         /// <param name="receiver"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public Reaction GetReaction(BehaviorTag caller, 
+        public Reaction GetReaction(BehaviorTag caller,
             BehaviorTag receiver, Message message)
         {
-            Reaction? res = FindReaction(caller.Value, 
+#nullable enable
+            Reaction? res = FindReaction(caller.Value,
                 receiver.Value, message.Value);
             if (res != null)
                 return res;
 
-            res = FindReaction(caller.Value, 
+            res = FindReaction(caller.Value,
                 receiver.Value, @default);
             if (res != null)
                 return res;
-            
+
             res = FindReaction(caller.Value,
                 @default, message.Value);
             if (res != null)
                 return res;
-            
+
             res = FindReaction(caller.Value,
                 @default, @default);
             if (res != null)
@@ -188,6 +191,7 @@ namespace Simulation
             if (res != null)
                 return res;
 
+#nullable disable
             res = FindReaction(@default,
                 @default, @default);
             return res;

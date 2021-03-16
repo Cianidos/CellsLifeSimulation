@@ -1,9 +1,6 @@
 ﻿// This is a personal academic project. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
-using System;
-using UnityEditor.U2D.Path.GUIFramework;
-
 namespace Simulation
 {
     /// <summary>
@@ -16,10 +13,10 @@ namespace Simulation
         {
             Value = value;
         }
-        public string Value { get; set; }
+        public string Value { get; }
     }
 
-    
+
     /// <summary>
     /// Class wrapper for string.
     /// Unique identifier of message(request).
@@ -31,7 +28,7 @@ namespace Simulation
             Value = value;
         }
 
-        public string Value { get; set; }
+        public string Value { get; }
     }
 
     /// <summary>
@@ -45,7 +42,7 @@ namespace Simulation
         {
             Value = value;
         }
-        public string Value { get; set; }
+        public string Value { get; }
     }
 
     /// <summary>

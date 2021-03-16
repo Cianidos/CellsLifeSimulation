@@ -22,8 +22,8 @@ namespace Simulation
             Cycle = new LifeCycle(otherBehavior.Cycle);
             Properties = new LifeProperties(otherBehavior.Properties);
         }
-    
-        public BehaviorTag Tag;
+
+        public readonly BehaviorTag Tag;
         public ReactionTable Table;
         public LifeCycle Cycle;
         public LifeProperties Properties;
