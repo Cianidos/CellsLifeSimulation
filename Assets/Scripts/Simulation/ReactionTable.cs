@@ -5,8 +5,11 @@ using System.Collections.Generic;
 namespace Simulation
 {
     /// <summary>
-    /// Determine Sims reactions on other Sim's requests
+    /// Determine <see cref="Sim"/>'s reactions on other <see cref="Sim"/>'s <see cref="Request"/>s
     /// </summary>
+    /// <remarks>
+    /// See also: <seealso cref="Message"/>, <seealso cref="MessageTag"/>
+    /// </remarks>
     public class ReactionTable
     {
         public ReactionTable()
@@ -83,7 +86,7 @@ namespace Simulation
         /// <param name="message"></param>
         /// <param name="react"></param>
         public ReactionTable AddReaction(BehaviorTag caller,
-            BehaviorTag receiver, Message message, Reaction react)
+            BehaviorTag receiver, MessageTag message, Reaction react)
         {
             AddReaction(caller.Value, receiver.Value, message.Value, react);
             return this;
@@ -98,7 +101,7 @@ namespace Simulation
         /// <param name="message"></param>
         /// <param name="react"></param>
         public ReactionTable AddDefaultReactionOn(BehaviorTag caller,
-            Message message, Reaction react)
+            MessageTag message, Reaction react)
         {
             AddReaction(caller.Value, @default, message.Value, react);
             return this;
@@ -124,7 +127,7 @@ namespace Simulation
         /// <param name="message"></param>
         /// <param name="react"></param>
         public ReactionTable AddDefaultReactionFrom(BehaviorTag receiver,
-            Message message, Reaction react)
+            MessageTag message, Reaction react)
         {
             AddReaction(@default, receiver.Value, message.Value, react);
             return this;
@@ -153,7 +156,7 @@ namespace Simulation
         /// <param name="message"></param>
         /// <returns></returns>
         public Reaction GetReaction(BehaviorTag caller,
-            BehaviorTag receiver, Message message)
+            BehaviorTag receiver, MessageTag message)
         {
 #nullable enable
             Reaction? res = FindReaction(caller.Value,

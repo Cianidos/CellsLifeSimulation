@@ -28,7 +28,7 @@ namespace Simulation
             sim.Behavior = behavior;
             obj.GetComponent<Rigidbody2D>().AddForce(
                 new Vector2(Random.Range(-1.0f, 1.0f),
-                    Random.Range(-1.0f, 1.0f) * 50));
+                    Random.Range(-1.0f, 1.0f)) * 50);
             obj.layer = LayerMask.NameToLayer("Objects");
             sim.OnInstantiationDone();
         }

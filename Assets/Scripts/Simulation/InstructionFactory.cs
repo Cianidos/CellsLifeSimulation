@@ -148,7 +148,7 @@ namespace Simulation
         /// <param name="property">Property name</param>
         /// <param name="value">new value</param>
         /// <returns>Instruction</returns>
-        public static Instruction PropSet(Property property, int value)
+        public static Instruction PropSet(PropertyTag property, int value)
         {
             return (sim, cycle) =>
             {
@@ -167,7 +167,7 @@ namespace Simulation
         /// <param name="increment">Step of increment</param>
         /// <returns></returns>
         public static Instruction PropIncrement
-            (Property property, int increment = 1)
+            (PropertyTag property, int increment = 1)
         {
             return (sim, cycle) =>
             {
@@ -182,7 +182,7 @@ namespace Simulation
         /// <param name="lifeTime">Time before message self destruction</param>
         /// <param name="radius">Size of message</param>
         /// <returns></returns>
-        public static Instruction MsgPost(Message message, float lifeTime,
+        public static Instruction MsgPost(MessageTag message, float lifeTime,
             float radius)
         {
             return (sim, cycle) =>

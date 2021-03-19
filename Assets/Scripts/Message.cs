@@ -3,6 +3,10 @@
 
 using UnityEngine;
 
+/// <summary>
+/// Represent non-material object, that carries <see cref="Simulation.Request"/> to <see cref="Sim"/>s.
+/// Part of Reaction model, that transfer signals between Sims.
+/// </summary>
 class Message : MonoBehaviour
 {
     public Simulation.Request request;

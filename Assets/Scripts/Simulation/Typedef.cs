@@ -7,6 +7,7 @@ namespace Simulation
     /// Class wrapper for string.
     /// Unique identifier of behavior.
     /// </summary>
+    /// <remarks>See also: <see cref="Behavior"/></remarks>
     public class BehaviorTag
     {
         public BehaviorTag(string value)
@@ -21,9 +22,10 @@ namespace Simulation
     /// Class wrapper for string.
     /// Unique identifier of message(request).
     /// </summary>
-    public class Message
+    /// <remarks>See also: <see cref="Message"/> <see cref="Request"/></remarks>
+    public class MessageTag
     {
-        public Message(string value)
+        public MessageTag(string value)
         {
             Value = value;
         }
@@ -33,12 +35,13 @@ namespace Simulation
 
     /// <summary>
     /// Class wrapper for string.
-    /// Unique identifier in Sim's properties.
+    /// Unique identifier in <see cref="Sim"/>'s properties.
     /// Name of property.
     /// </summary>
-    public class Property
+    /// <remarks>See also: <see cref="LifeProperties"/></remarks>
+    public class PropertyTag
     {
-        public Property(string value)
+        public PropertyTag(string value)
         {
             Value = value;
         }
@@ -46,15 +49,16 @@ namespace Simulation
     }
 
     /// <summary>
-    /// Block of lifeCycle instruction chain, that determine actions of Sim.
+    /// Block of <see cref="LifeCycle"/> instruction chain, that determine actions of <see cref="Sim"/>.
     /// </summary>
     /// <param name="sim">owner of instruction</param>
     /// <param name="lifeCycle">lifeCycle that contains this instruction</param>
     public delegate void Instruction(Sim sim, LifeCycle lifeCycle);
 
     /// <summary>
-    /// This is what Sim(receiver) do if he receive message of other Sim(caller).
+    /// This is what <see cref="Sim"/>(receiver) do if he receive <see cref="Message"/> of other Sim(caller).
     /// </summary>
+    /// <remarks>See also: <see cref="ReactionTable"/></remarks>
     /// <param name="callerSim"></param>
     /// <param name="receiverSim"></param>
     public delegate void Reaction(Sim callerSim, Sim receiverSim);

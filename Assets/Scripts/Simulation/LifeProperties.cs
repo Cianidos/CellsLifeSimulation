@@ -8,21 +8,21 @@ namespace Simulation
     {
         public LifeProperties(LifeProperties otherProperties)
         {
-            Props = new Dictionary<Property, int>(otherProperties.Props);
+            Props = new Dictionary<PropertyTag, int>(otherProperties.Props);
         }
         public LifeProperties()
         {
-            Props = new Dictionary<Property, int>();
+            Props = new Dictionary<PropertyTag, int>();
         }
 
-        private readonly Dictionary<Property, int> Props;
-        public void AddProperty(Property name, int value_by_default)
+        private readonly Dictionary<PropertyTag, int> Props;
+        public void AddProperty(PropertyTag name, int value_by_default)
         {
             if (!Props.ContainsKey(name))
                 Props.Add(name, value_by_default);
         }
 
-        public void ChangeValue(Property name, int value)
+        public void ChangeValue(PropertyTag name, int value)
         {
             if (!Props.ContainsKey(name))
                 throw new KeyNotFoundException();
@@ -30,12 +30,12 @@ namespace Simulation
                 Props[name] = value;
         }
 
-        public void IncrementValue(Property name, int increment)
+        public void IncrementValue(PropertyTag name, int increment)
         {
             ChangeValue(name, GetPropertyValue(name) + increment);
         }
 
-        public int GetPropertyValue(Property name)
+        public int GetPropertyValue(PropertyTag name)
         {
             if (!Props.ContainsKey(name))
                 throw new KeyNotFoundException();
@@ -43,7 +43,7 @@ namespace Simulation
                 return Props[name];
         }
 
-        public bool IsPropertyIn(Property name)
+        public bool IsPropertyIn(PropertyTag name)
         {
             return Props.ContainsKey(name);
         }

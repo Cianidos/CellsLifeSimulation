@@ -3,9 +3,15 @@
 
 namespace Simulation
 {
+    /// <summary>
+    /// Simple class-container for <see cref="MessageTag"/> and it's author (<see cref="Sim"/>)
+    /// </summary>
+    /// <remarks>
+    /// See also: <seealso cref="global::Message"/>
+    /// </remarks>
     public class Request
     {
-        public Request(Sim author, Message message)
+        public Request(Sim author, MessageTag message)
         {
             Tag = author.Behavior.Tag;
             Message = message;
@@ -13,7 +19,7 @@ namespace Simulation
         }
 
         public BehaviorTag Tag { get; }
-        public Message Message { get; }
+        public MessageTag Message { get; }
         public Sim Author { get; }
     }
 }
