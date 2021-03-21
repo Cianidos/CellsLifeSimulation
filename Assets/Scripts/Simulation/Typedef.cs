@@ -15,6 +15,10 @@ namespace Simulation
             Value = value;
         }
         public string Value { get; }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
 
@@ -29,8 +33,11 @@ namespace Simulation
         {
             Value = value;
         }
-
         public string Value { get; }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
     /// <summary>
@@ -46,6 +53,10 @@ namespace Simulation
             Value = value;
         }
         public string Value { get; }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 
     /// <summary>
