@@ -30,6 +30,7 @@ namespace Simulation
                 new Vector2(Random.Range(-1.0f, 1.0f),
                     Random.Range(-1.0f, 1.0f)) * 50);
             obj.layer = LayerMask.NameToLayer("Objects");
+            obj.name = behavior.Tag.Value;
             sim.OnInstantiationDone();
         }
 
@@ -44,6 +45,8 @@ namespace Simulation
             mesComponent.lifeTime = lifeTimeInSeconds;
             mesComponent.request = request;
             obj.transform.localScale = Vector3.one * radius;
+            obj.name = request.AuthorTag.Value + " " +
+                       request.Message.Value;
             obj.layer = LayerMask.NameToLayer("Messages");
         }
     }

@@ -9,49 +9,35 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        var table = new ReactionTable();
         var cellBehaviorFirst = new Behavior("first");
-
-        cellBehaviorFirst.Table = table;
-
-
-        var firCycle = new LifeCycle();
-        firCycle.AddInstruction((sim, cycle) =>
-        {
-            Instantiator.InstantiateSim(cellBehaviorFirst,
-                sim.transform.position + new Vector3(Random.Range(-1.0f, 1.0f),
-                    Random.Range(-1.0f, 1.0f), 0) * 2);
-        });
-
-        firCycle.EndCycle(false);
-
-        cellBehaviorFirst.Cycle = firCycle;
-        cellBehaviorFirst.Properties = new LifeProperties();
-
+        cellBehaviorFirst.Cycle
+            .AddInstruction(
+                InstructionFactory.InstanceRandomNear(cellBehaviorFirst))
+            .EndCycle(false);
         Instantiator.InstantiateSim(cellBehaviorFirst, Vector3.zero);
 
 
         //var food = new Behavior("food");
-        //food.Properties.AddProperty(new Property("amount"),20);
+        //food.Properties.AddProperty(new PropertyTag("amount"), 20);
         //food.Cycle
-        //    .AddInstruction(InstructionFactory.PropIncrement(new Property("amount"), 10))
+        //    .AddInstruction(InstructionFactory.PropIncrement(new PropertyTag("amount"), 10))
         //    .AddInstruction(InstructionFactory.CtrlNextIf(
         //        (sim) =>
         //            sim.Behavior.Properties.GetPropertyValue(
-        //                new Property("amount")) < 100))
+        //                new PropertyTag("amount")) < 100))
         //    .AddInstruction(InstructionFactory.CtrlCurrentToIndexRelative(2))
         //    .AddInstruction(InstructionFactory.InstanceRandomNear(food))
-        //    .AddInstruction(InstructionFactory.PropIncrement(new Property("amount"), -50))
+        //    .AddInstruction(InstructionFactory.PropIncrement(new PropertyTag("amount"), -50))
         //    .AddInstruction(InstructionFactory.CtrlNextIf(
         //        (sim =>
         //            sim.Behavior.Properties.GetPropertyValue(
-        //                new Property("amount")) <= 0)))
+        //                new PropertyTag("amount")) <= 0)))
         //    .AddInstruction(InstructionFactory.SelfDestruction())
         //    .EndCycle(true);
 
 
         //var eater = new Behavior("eater");
-        //eater.Properties.AddProperty(new Property("health"), 50);
+        //eater.Properties.AddProperty(new PropertyTag("health"), 50);
         //eater.Cycle
         //    .AddInstruction((sim, cycle) =>
         //        sim.GetComponent<Rigidbody2D>()
@@ -60,20 +46,20 @@ public class Main : MonoBehaviour
         //    )
         //    .AddInstruction(InstructionFactory.CtrlNextIf((sim =>
         //        sim.Behavior.Properties.GetPropertyValue(
-        //            new Property("health")) < 100)))
+        //            new PropertyTag("health")) < 100)))
         //    .AddInstruction(InstructionFactory.CtrlCurrentToIndexRelative(2))
         //    .AddInstruction(
-        //        InstructionFactory.PropIncrement(new Property("health"), -50))
+        //        InstructionFactory.PropIncrement(new PropertyTag("health"), -50))
         //    .AddInstruction(InstructionFactory.InstanceRandomNear(eater))
         //    .EndCycle(true);
 
         //var table = new ReactionTable();
         //table.AddReaction(eater.Tag, food.Tag,
-        //    new Simulation.Message("collide"), 
+        //    new Simulation.MessageTag("collide"),
         //    (callerSim, receiverSim) =>
         //    {
-        //        callerSim.Behavior.Properties.IncrementValue(new Property("health"), 10);
-        //        receiverSim.Behavior.Properties.IncrementValue(new Property("amount"), -20);
+        //        callerSim.Behavior.Properties.IncrementValue(new PropertyTag("health"), 10);
+        //        receiverSim.Behavior.Properties.IncrementValue(new PropertyTag("amount"), -20);
         //    });
 
         //food.Table = table;

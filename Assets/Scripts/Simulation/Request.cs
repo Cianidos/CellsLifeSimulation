@@ -13,12 +13,12 @@ namespace Simulation
     {
         public Request(Sim author, MessageTag message)
         {
-            Tag = author.Behavior.Tag;
+            AuthorTag = author.Behavior.Tag;
             Message = message;
             Author = author;
         }
 
-        public BehaviorTag Tag { get; }
+        public BehaviorTag AuthorTag { get; }
         public MessageTag Message { get; }
         public Sim Author { get; }
     }
